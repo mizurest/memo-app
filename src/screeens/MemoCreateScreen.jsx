@@ -3,14 +3,11 @@ import {
   View, StyleSheet, TextInput, KeyboardAvoidingView,
 } from 'react-native';
 
-import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
 
 export default function MemoCreateScreen() {
   return (
     <KeyboardAvoidingView behavior="height" style={styles.container}>
-
-      <AppBar />
 
       <View style={styles.inputContainer}>
         <TextInput value="" multiline style={styles.input} />
@@ -36,6 +33,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     flex: 1,
-    textAlignVertical: 'center',
+    textAlignVertical: 'top',
   },
 });
