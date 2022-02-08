@@ -10,17 +10,9 @@ import MemoCreateScreen from './src/screeens/MemoCreateScreen';
 import LoginScreen from './src/screeens/LoginScreen';
 import SignupScreen from './src/screeens/SignupScreen';
 
-const Stack = createStackNavigator();
+import { firebaseConfig } from './env';
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyBxmvw9UVH-IIV5xDX-Dnf8oQSpQXNHkgo',
-  authDomain: 'memoapp-8c86e.firebaseapp.com',
-  projectId: 'memoapp-8c86e',
-  storageBucket: 'memoapp-8c86e.appspot.com',
-  messagingSenderId: '10372382284',
-  appId: '1:10372382284:web:7cca7934a9fcb92960bee9',
-};
+const Stack = createStackNavigator();
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
@@ -30,7 +22,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Signup"
+        initialRouteName="Login"
         screenOptions={{
           headerStyle: { backgroundColor: '#2E74D5' },
           headerTitleStyle: { color: '#fff' },
