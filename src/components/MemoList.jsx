@@ -8,6 +8,8 @@ import Icon from './Icon';
 
 export default function MemoList() {
   const navigation = useNavigation();
+  console.log('memo list jsx');
+
   return (
     <View>
       <TouchableOpacity
@@ -15,24 +17,8 @@ export default function MemoList() {
         onPress={() => { navigation.navigate('MemoDetail'); }}
       >
         <View>
-          <Text style={styles.memoListItemTitle}>メモタイトル</Text>
-          <Text style={styles.memoListItemDate}>2022年2月5日</Text>
-        </View>
-        <TouchableOpacity
-          style={styles.memoDelete}
-          onPress={() => Alert.alert('Are you sure?')}
-        >
-          <Icon name="delete" size={24} color="#B0B0B0" />
-        </TouchableOpacity>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.memoListItem}
-        onPress={() => { navigation.navigate('MemoDetail'); }}
-      >
-        <View>
-          <Text style={styles.memoListItemTitle}>メモタイトル</Text>
-          <Text style={styles.memoListItemDate}>2022年2月5日</Text>
+          <Text style={styles.memoListItemTitle}>a</Text>
+          <Text style={styles.memoListItemDate}>aa</Text>
         </View>
         <TouchableOpacity
           style={styles.memoDelete}

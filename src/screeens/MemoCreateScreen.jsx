@@ -14,7 +14,7 @@ export default function MemoCreateScreen(props) {
   const handlePress = () => {
     const { currentUser } = firebase.auth();
     const db = firebase.firestore();
-    const ref = db.collection(`users/${currentUser}/memos`);
+    const ref = db.collection(`users/${currentUser.uid}/memos`);
     ref.add({
       bodyText: body,
       updatedAt: new Date(),
