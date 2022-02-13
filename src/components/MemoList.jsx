@@ -1,24 +1,28 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, TouchableOpacity, Alert,
+  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {
+  arrayOf, instanceOf, shape, string,
+} from 'prop-types';
 
 import Icon from './Icon';
 
-export default function MemoList() {
+export default function MemoList(props) {
+  const { memos } = props;
   const navigation = useNavigation();
-  console.log('memo list jsx');
 
-  return (
-    <View>
+  function renderItem({ item }) {
+    return (
       <TouchableOpacity
+        key={item.id}
         style={styles.memoListItem}
         onPress={() => { navigation.navigate('MemoDetail'); }}
       >
         <View>
-          <Text style={styles.memoListItemTitle}>a</Text>
-          <Text style={styles.memoListItemDate}>aa</Text>
+          <Text style={styles.memoListItemTitle} numberOfLines={1}>{item.bodyText}</Text>
+          <Text style={styles.memoListItemDate}>{String(item.updatedAt)}</Text>
         </View>
         <TouchableOpacity
           style={styles.memoDelete}
@@ -27,12 +31,32 @@ export default function MemoList() {
           <Icon name="delete" size={24} color="#B0B0B0" />
         </TouchableOpacity>
       </TouchableOpacity>
+    );
+  }
 
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={memos}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 }
 
+MemoList.propTypes = {
+  memos: arrayOf(shape({
+    id: string,
+    bodyText: string,
+    updatedAt: instanceOf(Date),
+  })).isRequired,
+};
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   memoListItem: {
     backgroundColor: 'white',
     flexDirection: 'row',

@@ -7,9 +7,7 @@ import CircleButton from '../components/CircleButton';
 import LogOutButton from '../components/LogOutButton';
 
 export default function MemoListScreen(props) {
-  console.log('MemoListScreenの開始点');
   const { navigation } = props;
-  console.log('Stateの初期化');
   const [memos, setMemos] = useState([]);
 
   useEffect(() => {
@@ -33,12 +31,8 @@ export default function MemoListScreen(props) {
             bodyText: data.bodyText,
             updatedAt: data.updatedAt.toDate(),
           });
-          console.log('メモ情報を配列に入れる');
         });
-        console.log('ここでSetMemoを実行');
-        console.log(userMemos);
         setMemos(userMemos);
-        console.log(memos);
       }, () => {
         Alert.alert('データの読み込みに失敗しました');
       });
@@ -49,7 +43,7 @@ export default function MemoListScreen(props) {
   return (
     <View style={styles.container}>
 
-      <MemoList />
+      <MemoList memos={memos} />
 
       <CircleButton
         name="plus"
