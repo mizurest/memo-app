@@ -22,6 +22,7 @@
         "react/function-component-definition": [
             2, { "namedComponents": "function-declaration" }
         ],
-        "react/prop-types": ["error", {"ignore": ["navigation"] }]
+        "react/prop-types": ["error", {"ignore": ["navigation"] }],
+        "import/prefer-default-export": 0
     }
 }
