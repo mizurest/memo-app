@@ -29,21 +29,26 @@ export default function LoginScreen(props) {
 
   const handlePress = () => {
     setLoading(true);
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredentail) => {
-        const { user } = userCredentail;
-        console.log(user.uid);
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'MemoList' }],
+    if (!email || !password) {
+      Alert.alert('Type Email Address and Password');
+      setLoading(false);
+    } else {
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredentail) => {
+          const { user } = userCredentail;
+          console.log(user.uid);
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'MemoList' }],
+          });
+        })
+        .catch((error) => {
+          Alert.alert(error.code);
+        })
+        .then(() => {
+          setLoading(false);
         });
-      })
-      .catch((error) => {
-        Alert.alert(error.code);
-      })
-      .then(() => {
-        setLoading(false);
-      });
+    }
   };
   return (
     <View style={styles.container}>
